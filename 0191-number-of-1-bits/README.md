@@ -38,3 +38,13 @@
 
 <p>&nbsp;</p>
 <strong>Follow up:</strong> If this function is called many times, how would you optimize it?</div>
+
+<h2>LEARNINGS</h2>
+<p>Important:
+suppose,we do an Bitwise(&) operation on a number with 1,
+like this: (num&1)
+</p>
+<p>
+If the result is 1, it means the last Binary digit of the 'num' variable was 1.
+</p>
+<p>And If the result is 0, it means the last Binary digit of the 'num' variable was 0.</p>
