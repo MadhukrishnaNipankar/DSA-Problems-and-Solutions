@@ -29,7 +29,7 @@ And the value is returned,which is the smallest multiple of 2 and n.
 
 
 
-Optimized Approach:
+Optimized Approach 1:
 1) If n is even, return n 
 2) Else return n*2
 
@@ -45,5 +45,14 @@ return n;
 else{
 return n*2;
 }
+
+Optimized Approach 2:
+code:
+    return n << (n & 1);
+
+1]Here, if the n is even,then (n&1) resolves to 0 .
+2]so no left shift happens.So, simply value of n is returned.
+3]And if n is odd, then (n&1) resolves to 1.
+4]so the n is left shifted by 1 bit, which eventually means that the number is multiplied by 2. so, this new value is returned.
 
 */
