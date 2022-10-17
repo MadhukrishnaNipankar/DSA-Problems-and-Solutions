@@ -26,3 +26,7 @@ public:
         return i;
     }
 };
+
+/*
+not an optimized solution. this can also be implemented using binary search
+*/
