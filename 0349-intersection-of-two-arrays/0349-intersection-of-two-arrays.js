@@ -1,9 +1,3 @@
-/**
- * @param {number[]} nums1
- * @param {number[]} nums2
- * @return {number[]}
- */
-
     var isPresent = function(key, theArray){
     for(let i =0;i<theArray.length;i++){
         if(theArray[i] == key){
@@ -28,3 +22,6 @@ var intersection = function(nums1, nums2) {
     return intersectionArray;
 };
 
+/*
+solve it in c++, when you learn sufficient topics
+*/
