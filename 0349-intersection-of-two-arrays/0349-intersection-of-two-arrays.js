@@ -23,5 +23,6 @@ var intersection = function(nums1, nums2) {
 };
 
 /*
+This solution is in Javascript
 solve it in c++, when you learn sufficient topics
 */
