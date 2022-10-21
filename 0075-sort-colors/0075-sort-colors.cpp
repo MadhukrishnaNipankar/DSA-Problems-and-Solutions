@@ -15,12 +15,7 @@ public:
             }
         }
         
-        cout<<"zero : "<<zeroes;        cout<<"two : "<<twos;
-        cout<<"one : "<<ones;
-
-        
-        
-        // Modifying the array 
+        // Modifying the array (adding 0's,1's and 2's)
         int i = 0;
             for(;i<zeroes;i++){ 
                 nums[i] = 0;
