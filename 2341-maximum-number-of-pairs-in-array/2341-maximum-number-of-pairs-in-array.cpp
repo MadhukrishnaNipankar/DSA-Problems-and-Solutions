@@ -24,7 +24,7 @@ public:
 
         
         answer.at(0) = pairs;
-        answer.at(1) = n-(pairs*2);
+        answer.at(1) = n-(pairs*2); //leftovers 
         
         return answer; 
     }
