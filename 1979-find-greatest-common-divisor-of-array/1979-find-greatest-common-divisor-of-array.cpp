@@ -1,3 +1,4 @@
+/*
 class Solution {
 public:
     int findGCD(vector<int>& nums) {
@@ -26,10 +27,36 @@ public:
         return GCD;
     }
 };
-
+*/
 
 /*
-Approach:
+Approach 1:
 1]Find the minimum and maximum in one iteration. Let them be mn and mx
+2]Try all the numbers in the range [1, mn] and check the largest number which divides both of them.
+*/
+
+class Solution {
+public:
+    int findGCD(vector<int>& nums) {
+        int n = nums.size();
+        //sorting
+        sort(nums.begin(),nums.end());
+        
+        int min = nums[0], max = nums[n-1];
+       
+        //2] Finding GCD
+        int GCD = 0;
+        for(int i = 1;i<=min;i++){
+            if(min%i == 0 && max%i == 0 && GCD<i){
+                GCD = i;
+            }
+        }
+        return GCD;
+    }
+};
+
+/*
+Approach 2:
+1]Find the minimum and maximum by sorting
 2]Try all the numbers in the range [1, mn] and check the largest number which divides both of them.
 */
