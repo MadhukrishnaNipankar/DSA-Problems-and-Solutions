@@ -17,8 +17,6 @@ class Solution{
                i++;
                printNos(N);
            }
-          
-           
     }
 };
 
