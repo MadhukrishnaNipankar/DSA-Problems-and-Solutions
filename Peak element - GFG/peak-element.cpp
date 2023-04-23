@@ -14,16 +14,6 @@ class Solution
     public:
     int peakElement(int arr[], int n)
     {
-        //corner cases
-       if(n == 1)return 0;
-       else if(n == 2){
-           if(arr[0]>arr[1])return 0;
-           else return 1;
-       }
-       
-       
-       
-       //logic for n greater than 3
        int start = 0;
        int end = n-1;
        int mid = start + (end-start)/2;
