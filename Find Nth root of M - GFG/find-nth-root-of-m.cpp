@@ -14,7 +14,7 @@ class Solution{
 	        while(low<=high){
 	             mid = (low+high)/2;
 	          
-	             
+	            
 	             
 	            if(pow(mid, n) == target)
 	                 return mid;
