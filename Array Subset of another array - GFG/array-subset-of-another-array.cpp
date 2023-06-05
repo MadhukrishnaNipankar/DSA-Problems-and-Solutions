@@ -35,20 +35,6 @@ string isSubset(int a1[], int a2[], int n, int m) {
         hash[a1[i]]++;
     }
     
-    /*
-    11 1
-    7 1 
-    1 1
-    13 1
-    21 1
-    3 2/
-    7 1
-    */
-    
-//   for(auto it:hash){
-//       cout<<it.first<<" : "<<it.second<<endl;
-//   }    
-    
    for(int i=0;i<m;i++){
        if(hash[a2[i]] <=0)return "No";
       
