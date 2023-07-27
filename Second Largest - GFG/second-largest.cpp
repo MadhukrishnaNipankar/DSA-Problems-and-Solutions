@@ -7,21 +7,27 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:	
-
+	// Function returns the second
+	// largest elements
 	int print2largest(int arr[], int n) {
-	    int largest = -1;
-	    int secondLargest = -1;
-	    for(int i = 0;i < n;i++){
-	        if(arr[i] > largest){
-	            secondLargest = largest;
-	            largest = arr[i];
-	        }
-	        if(arr[i] > secondLargest && arr[i] < largest){
-	            secondLargest = arr[i];
-	        }
-	    }
-
-        return secondLargest;
+	    int largest = INT_MIN,secondLargest = INT_MIN;
+	    
+	    int i=0;
+	   // finding largest
+	   for(int i=0;i<n;i++){
+	       largest = max(arr[i],largest);
+	   }
+	   
+	   //finding second largest
+	   for(int i=0;i<n;i++){
+	       if(arr[i]<largest && arr[i]>secondLargest){
+	           secondLargest = arr[i];
+	       }
+	   }
+	   
+	   
+	    
+	    return max(secondLargest,-1);
 	}
 };
 
