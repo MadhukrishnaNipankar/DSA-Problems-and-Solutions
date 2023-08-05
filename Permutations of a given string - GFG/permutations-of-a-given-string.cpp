@@ -6,35 +6,41 @@ using namespace std;
 class Solution
 {
 	public:
-void findPermutations(string& str, int l, int r, vector<string>& result) {
-    if (l == r) {
-        result.push_back(str);
-        return;
-    }
-
-    for (int i = l; i <= r; i++) {
-        bool isDuplicate = false;
-        for (int j = l; j < i; j++) {
-            if (str[j] == str[i]) {
-                isDuplicate = true;
-                break;
+	  void solve(string &s,set<string>&ans,string &temp,unordered_map<int,bool> &used){
+           if(temp.size() >= s.size()){
+            ans.insert(temp);
+            return;
+        }
+        
+        for(int i=0;i<s.size();i++){
+            // AB
+            
+            // if this index is already taken then don't take it again
+            if(!used[i]){
+                temp+=s[i]; //AB
+                used[i] = true;
+                solve(s,ans,temp,used);
+                
+                temp.pop_back();
+                used[i] = false;
             }
-        }
-
-        if (!isDuplicate) {
-            swap(str[l], str[i]);
-            findPermutations(str, l + 1, r, result);
-            swap(str[l], str[i]); // Backtrack
-        }
+        }  
+        
     }
-}
-
-vector<string> find_permutation(string S) {
-    vector<string> result;
-    sort(S.begin(), S.end());
-    findPermutations(S, 0, S.length() - 1, result);
-    return result;
-}
+		vector<string>find_permutation(string s)
+		{
+        	  vector<string>res;
+               set<string>ans;
+               string temp = "";
+               unordered_map<int,bool>used;
+               solve(s,ans,temp,used);
+               
+               for(auto it:ans){
+                   res.push_back(it);
+               }
+               
+               return res;
+		}
 };
 
 
