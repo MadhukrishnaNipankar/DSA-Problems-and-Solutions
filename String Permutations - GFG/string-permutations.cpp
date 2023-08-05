@@ -6,7 +6,7 @@ using namespace std;
 class Solution{
     public:
     //Complete this function
-    void solve(string &s,vector<string>&ans,string &temp,vector<bool> &used){
+    void solve(string &s,vector<string>&ans,string &temp,unordered_map<int,bool> &used){
         if(temp.size() >= s.size()){
             ans.push_back(temp);
             return;
@@ -32,7 +32,7 @@ class Solution{
      
        vector<string>ans;
        string temp = "";
-       vector<bool> used(s.size(), false);
+       unordered_map<int,bool>used;
        solve(s,ans,temp,used);
          sort(ans.begin(),ans.end());
        return ans;
