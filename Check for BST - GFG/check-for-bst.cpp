@@ -23,23 +23,26 @@ class Solution
 {
     public:
     //Function to check whether a Binary Tree is BST or not.
-    void inorder(Node* root, vector<int>&ans){
-        if(root == NULL)return;
-        inorder(root->left,ans);
-        ans.push_back(root->data);
-        inorder(root->right,ans);
-        return;
+    bool inorder(Node* root,int&prevElement){
+        if(root == NULL)return true;
+        
+        
+        bool leftAns = inorder(root->left,prevElement);
+        if(!leftAns)return false;
+        
+        if(prevElement >= root->data)return false;
+        else prevElement = root->data;
+        
+        bool rightAns = inorder(root->right,prevElement);
+        if(!rightAns)return false;
+        
+        
+        return true;
     }
     bool isBST(Node* root) 
     {
-      vector<int>inorderT;
-      inorder(root,inorderT);
-      
-      for(int i=1;i<inorderT.size();i++){
-          if(inorderT[i-1]>=inorderT[i])return false;
-      }
-      
-      return true;
+      int prevElement = INT_MIN;
+      return inorder(root,prevElement);
     }
 };
 
