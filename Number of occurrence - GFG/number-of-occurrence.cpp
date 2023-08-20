@@ -10,8 +10,7 @@ class Solution{
 public:	
 	/* if x is present in arr[] then returns the count
 		of occurrences of x, otherwise returns 0. */
-	
-	int firstOccurence(int arr[],int low,int high,int target){
+int firstOccurence(int arr[],int low,int high,int target){
 	    int mid = low+(high-low)/2;
 	    int firstOccurenceIndex = -1;
 	    while(low<=high){
