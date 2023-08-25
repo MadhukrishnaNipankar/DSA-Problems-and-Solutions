@@ -9,16 +9,21 @@ using namespace std;
 class Solution{
 public:	
 	
-	bool checkPalindrome(int i,string &S){
-        if(i>=S.size()/2)return true;
-        if(S[i]!=S[S.size()-i-1])return false;
-        return checkPalindrome(i+1,S);
-	}
 	
 	int isPalindrome(string S)
 	{
-	    if(checkPalindrome(0,S))return 1;
-	    else return 0;
+	   int i=0;
+	   int j=S.size()-1;
+	   
+	   while(i<=j){
+	       if(S[i]!=S[j])return 0;
+	       i++;
+	       j--;
+	       
+	   }
+	   
+	   return 1;
+	   
 	}
 
 };
