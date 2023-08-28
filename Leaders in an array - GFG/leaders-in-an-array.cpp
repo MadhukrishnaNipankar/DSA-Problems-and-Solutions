@@ -26,44 +26,6 @@ class Solution{
  
         return result;
     }
-    
-    /*
-    Thinking :)
-    
-    16,17,4,3,5,2
-    i
-    max = a[n-1] = 2
-    ans = 2 (by default)
-    i--;
-    
-    
-    max = max(5,2) = 5
-    if(max == a[i])
-    put it into answer
-    ans = 2 5
-    i--
-    
-    
-    max = max(3,5) = 5
-    here, max is not equal to answer
-    ans = 2 5
-    i--
-    
-    max = max(3,5) = 5
-    here, max is not equal to answer
-    ans = 2 5
-    i--
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    */
 };
 
 //{ Driver Code Starts.
