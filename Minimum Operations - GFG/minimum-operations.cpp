@@ -22,26 +22,41 @@ class Solution
     // }
     
     // memoization
-     int help(int n,vector<int>&dp){
-        if(n<=0)return INT_MAX;
+    //  int help(int n,vector<int>&dp){
+    //     if(n<=0)return INT_MAX;
         
-        if(n == 1)return 1;
-        if(dp[n] != -1)return dp[n];
+    //     if(n == 1)return 1;
+    //     if(dp[n] != -1)return dp[n];
         
-        int one = help(n-1,dp)+1;
-        int two = INT_MAX;
+    //     int one = help(n-1,dp)+1;
+    //     int two = INT_MAX;
         
-        if(n%2 == 0)
-            two = help(n/2,dp)+1;
+    //     if(n%2 == 0)
+    //         two = help(n/2,dp)+1;
         
         
-        return dp[n] =  min(one,two);
+    //     return dp[n] =  min(one,two);
         
-    }
+    // }
+    
+    // Tabulation
     int minOperation(int n)
     {
-        vector<int>dp(n+1,-1);
-        return help(n,dp);
+        vector<int>dp(n+1,0);
+        dp[0] = 0;
+        dp[1] = 1;
+        
+        for(int i=2;i<=n;i++){
+            int one = dp[i-1]+1;
+            int two = INT_MAX;
+            
+            if(i%2 == 0)
+                two = dp[i/2]+1;
+                
+            dp[i] = min(one,two);
+        
+        }
+        return dp[n];
     }
 };
 
