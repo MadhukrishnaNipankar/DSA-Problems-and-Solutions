@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
   public:
-    vector<int> duplicates(int arr[], int n) {
+   vector<int> duplicates(int arr[], int n) {
         vector<int>hash(pow(10,5),0);
         vector<int>duplicates;
         
@@ -21,18 +21,6 @@ class Solution{
         return duplicates;
         
     }
-    
-    
-    /*
-    Thinking :)
-    
-    2 3 1 2 3 
-    0 1 2 3 4
-    
-    
-   
-    
-    */
 };
 
 
