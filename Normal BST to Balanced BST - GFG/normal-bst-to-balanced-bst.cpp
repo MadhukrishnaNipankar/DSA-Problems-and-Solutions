@@ -15,6 +15,58 @@ struct Node
 	}
 };
 
+
+// } Driver Code Ends
+/*Structure of the Node of the BST is as
+struct Node
+{
+	int data;
+	Node* left, *right;
+};
+*/
+
+class Solution{
+    
+    public:
+    // Your are required to complete this function
+    // function should return root of the modified BST
+    
+    Node* construct(vector<int>&traversalVector,int low,int high){
+        if(low>high)return NULL;
+        int mid = (low+high)/2;
+        Node* root = new Node(traversalVector[mid]);
+        root->left = construct(traversalVector,low,mid-1);
+        root->right = construct(traversalVector,mid+1,high);
+        
+        return root;
+    }
+    
+    void traverseAndStore(Node* root, vector<int>&traversalVector){
+        if(root == NULL)return;
+        traverseAndStore(root->left,traversalVector);
+        traversalVector.push_back(root->data);
+        traverseAndStore(root->right,traversalVector);
+    }
+    
+    Node* buildBalancedTree(Node* root)
+    {
+            // 1. Traverse and store in a vector
+            vector<int>traversalVector;
+            traverseAndStore(root,traversalVector);
+            
+            
+            // 2. construct the tree
+            Node* newRoot = construct(traversalVector,0,traversalVector.size()-1);
+            
+            
+            return newRoot;
+            
+    }
+};
+
+
+//{ Driver Code Starts.
+
 Node* insert(struct Node* node, int key){
 	if (node == NULL) return new Node(key);
 	if (key < node->data)
@@ -34,15 +86,14 @@ void preOrder(Node* node)
 
 int height(struct Node* node) 
 {
-  if (node==NULL) return 0;
-  else
-  {
-      int lDepth = height(node->left);
-      int rDepth = height(node->right);
-      if (lDepth > rDepth) return(lDepth+1);
-      else return(rDepth+1);
-  }
-return 2;
+  if (node==NULL) 
+    return 0;
+  int lDepth = height(node->left);
+  int rDepth = height(node->right);
+  if (lDepth > rDepth) 
+    return(lDepth+1);
+  else 
+    return(rDepth+1);
 } 
 Node *buildTree(string str) {
     // Corner Case
@@ -121,47 +172,11 @@ int main()
         getline(cin,tree);
         root = buildTree(tree);
         // cout<<height(root)<<endl;
-        root = buildBalancedTree(root);
+        Solution obj;
+        root = obj.buildBalancedTree(root);
         cout<<height(root)<<endl;
     }
 	return 0;
 }
 
 // } Driver Code Ends
-
-
-/*Structure of the Node of the BST is as
-struct Node
-{
-	int data;
-	Node* left, *right;
-};
-*/
-// Your are required to complete this function
-// function should return root of the modified BST
-
-// finding and storing inorder traversal
-void inorderT(Node* root, vector<int>&inorder){
-    if(root == NULL)return;
-    inorderT(root->left,inorder);
-    inorder.push_back(root->data);
-    inorderT(root->right,inorder);
-}
-
-Node* GiveBalancedTree(vector<int>&inorder,int start,int end){
-    if(start>end)return NULL;
-    
-    int mid = (start+end)/2;
-    Node*root = new Node(mid);
-    root->left = GiveBalancedTree(inorder,start,mid-1);
-    root->right = GiveBalancedTree(inorder,mid+1,end);
-    return root;
-}
-
-Node* buildBalancedTree(Node* root)
-{
-    vector<int>inorder;
-    inorderT(root,inorder);
-    
-    return GiveBalancedTree(inorder,0,inorder.size()-1);
-}
