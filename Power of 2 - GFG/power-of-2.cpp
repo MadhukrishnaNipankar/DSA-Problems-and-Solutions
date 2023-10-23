@@ -13,20 +13,14 @@ class Solution{
     // Function to check if given number n is a power of two.
     
     bool isPowerofTwo(long long n){
-        long long low = 0,high = n;    
-      
-        
-        while(low<=high){
-              long long mid = (low+high)/2;
-              if(pow(2,mid) == n)return true;
-              else if(pow(2,mid) > n){
-                  high = mid-1;
-              }else{
-                  low = mid+1;
-              }
+        if(n == 0)return false;
+        int count = 0;
+        while(n){
+            if(n&1)count++;
+            if(count>1)return false;
+            n = n>>1;
         }
-        
-        return false;
+        return true;
     }
 };
 
