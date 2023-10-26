@@ -42,6 +42,7 @@ class Solution
     // Tabulation
     int minOperation(int n)
     {
+        // Tabulation
         vector<int>dp(n+1,0);
         dp[0] = 0;
         dp[1] = 1;
