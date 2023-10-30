@@ -5,26 +5,19 @@ using namespace std;
 
 // } Driver Code Ends
 // User function Template for C++
+
+#define MOD 1000000007
+
 class Solution {
   public:
-   
-    int nthFibonacci(int n){
-   if (n <= 0)
-        return 0;
-
-    // Initialize an array to store Fibonacci numbers
-    int fib_nums[n + 1];
-    
-    // Base cases
-    fib_nums[0] = 0;
-    fib_nums[1] = 1;
-    
-    // Calculate Fibonacci numbers up to the nth position
-    for (int i = 2; i <= n; i++) {
-        fib_nums[i] = (fib_nums[i - 1] + fib_nums[i - 2]) % 1000000007;
+    int fib(int n, vector<int>&dp){
+        if(n == 1 || n == 2) return 1;
+        if(dp[n]!=-1) return dp[n];
+        return dp[n] = (fib(n-1, dp)+fib(n-2, dp))%MOD;
     }
-    
-    return fib_nums[n];
+    int nthFibonacci(int n){
+       vector<int>dp(n+1,-1);
+       return fib(n, dp);
     }
 };
 
