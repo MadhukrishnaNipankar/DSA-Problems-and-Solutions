@@ -7,7 +7,7 @@ using namespace std;
 class Solution{
 public:
 	void pushZerosToEnd(int arr[], int n) {
-        int i = 0;
+	    int i = 0;
         int j = 0;
         
         while(j<n){
