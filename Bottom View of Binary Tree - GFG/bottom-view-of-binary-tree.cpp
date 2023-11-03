@@ -96,45 +96,34 @@ Node* buildTree(string str)
 class Solution {
   public:
     vector <int> bottomView(Node *root) {
-        vector<int>ans;
-        if(root == NULL)return ans;
-        
-        /*
-        performing level order traversal and for each node, 
-        storing the horizontal index
-        */
-        queue<pair<int,Node*>>q; //will store horizontal index,Node
-        q.push({0,root});
-        
-        map<int,int>omap; //key - Horizontal index, value - value of the node
-        
-        while(!q.empty()){
-            pair<int,Node*>poppedPair = q.front();
-            q.pop();
-            int index = poppedPair.first;
-            int value = poppedPair.second->data;
-            
-            omap[index]=value;
-            
-            if(poppedPair.second->left){
-                pair<int,Node*>newPair;
-                newPair.first = (index)-1;
-                newPair.second = poppedPair.second->left;
-                q.push(newPair);
-            }
-            if(poppedPair.second->right){
-                pair<int,Node*>newPair;
-                newPair.first = (index)+1;
-                newPair.second = poppedPair.second->right;
-                q.push(newPair);
-            }
-        }
-        
-        for(auto it:omap){
-            ans.push_back(it.second);
-        }
-        
-        return ans;
+     // horizontal index,value
+      map<int,int>hash;
+      
+      queue<pair<int,Node*>>q;
+      q.push({0,root});
+    
+      
+      while(!q.empty()){
+          pair<int,Node*>frontData = q.front();
+          q.pop();
+          
+          Node* frontNode = frontData.second;
+          int horizontalIndex = frontData.first;
+          
+          hash[horizontalIndex] = frontNode->data;
+          
+          
+          if(frontNode->left != NULL)q.push({horizontalIndex-1,frontNode->left});
+          if(frontNode->right != NULL)q.push({horizontalIndex+1,frontNode->right});
+      }
+      
+      vector<int>ans;
+      for(auto it:hash){
+          ans.push_back(it.second);
+      }
+      
+      return ans;
+      
     }
 };
 
