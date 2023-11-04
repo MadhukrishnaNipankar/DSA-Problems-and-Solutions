@@ -96,36 +96,27 @@ struct Node {
 */
 class Solution {
   public:
-   //create mapping and return target node   
-   Node* createParentMapping(Node* root,int target,unordered_map<Node*,Node*>&um){
-       Node* targetNode = NULL;
-       queue<Node*>q;
-       q.push(root);
-       um[root] = NULL;
-       
-       while(!q.empty()){
-           Node*front = q.front();
-           q.pop();
-           
-           if(front->data == target){
-               targetNode = front;
-           }
-           
-           if(front->left){
-               um[front->left] = front;
-               q.push(front->left);
-           }
-           
-           if(front->right){
-               um[front->right] = front;
-               q.push(front->right);
-           }
-       }
-       
-       return targetNode;
-   }
-   
-   int burnTree(Node*root,unordered_map<Node*,Node*>&mapping){
+    void setParentPtrs(Node* root,Node* parent,unordered_map<Node*,Node*>&parentHash){
+        if(root == NULL)return;
+        parentHash[root] = parent;
+        setParentPtrs(root->left,root,parentHash);
+        setParentPtrs(root->right,root,parentHash);
+    }
+    
+    Node*giveTargetNode(Node* root,int target){
+        if(root == NULL)return NULL;
+        if(target == root->data)return root;
+    
+        Node* targetNode = NULL;
+        targetNode = giveTargetNode(root->left,target);
+        if(targetNode)return targetNode;
+        targetNode = giveTargetNode(root->right,target);
+        if(targetNode)return targetNode;
+        
+        return NULL;
+    }
+    
+     int burnTree(Node*root,unordered_map<Node*,Node*>&mapping){
        unordered_map<Node*,bool>visited;
        int ans = 0;
        //level order traversal
@@ -165,19 +156,20 @@ class Solution {
        
        return ans;
    }
+    
     int minTime(Node* root, int target) 
     {
-       /*
-       algo:
-       1]create child to parent mapping
-       2]find the target node
-       3]Burn the tree in minimum time
-       */
-       unordered_map<Node*,Node*>um; //child Node,Parent Node
-       Node* targetNode = createParentMapping(root,target,um);
-       
-       int ans = burnTree(targetNode,um);
-       return ans;
+        // Child - Parent Mapping
+        unordered_map<Node*,Node*>parentHash;
+        parentHash[root] = NULL;
+        setParentPtrs(root->left,root,parentHash);
+        setParentPtrs(root->right,root,parentHash);
+        
+        
+        // Finding targetNode
+        Node* targetNode =  giveTargetNode(root,target);
+
+        return burnTree(targetNode,parentHash);
     }
 };
 
