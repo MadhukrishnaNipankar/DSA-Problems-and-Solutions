@@ -6,25 +6,21 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-   int helper(vector<int>& height, int n, vector<int>& dp,int k){
-        if(n<=0) return 0;
-        
-        if(dp[n]!=-1) return dp[n];
-        
-        int minCost = INT_MAX;
-        for(int i=1;i<=k;i++){
-         if(n-i>= 0)
-          minCost = min(helper(height, n-i, dp,k) + abs(height[n]- height[n-i]),minCost);
-        }
-        
-        dp[n] = minCost;
-       
-        return dp[n];
-    }
-  
-    int minimizeCost(vector<int>& height, int n, int k) {
-        vector<int> dp(n, -1);
-        return helper(height, n-1, dp,k);
+//   Tabulation
+     int minimizeCost(vector<int>& height, int n, int k) {
+     vector<int>dp(n+1,-1);
+     dp[0]=0;
+     for(int i=1;i<n;i++){
+         int ministeps=INT_MAX;
+         for(int j=1;j<=k;j++){
+             if(i-j>=0) {
+                 int jump=dp[i-j]+abs(height[i]-height[i-j]);
+                ministeps=min(ministeps,jump);
+             }
+         }
+         dp[i]=ministeps;
+     }
+     return dp[n-1];
     }
 };
 
