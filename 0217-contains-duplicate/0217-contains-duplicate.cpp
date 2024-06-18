@@ -1,14 +1,11 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        //1] Sort the array
-         sort(nums.begin(), nums.end());
-         
-        //2] check if the adjacent elements are equal. 
-        for(int i = 0; i<nums.size()-1; i++){
-            if(nums[i] == nums[i+1]){
-                return true;
-            }
+        unordered_map<int,int>hash;
+        int n = nums.size();
+        for(int i=0;i<n;i++){
+            hash[nums[i]]++;
+            if(hash[nums[i]] == 2)return true;
         }
         return false;
     }
