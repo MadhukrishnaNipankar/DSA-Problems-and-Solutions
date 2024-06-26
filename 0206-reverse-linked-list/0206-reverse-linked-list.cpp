@@ -10,22 +10,38 @@
  */
 class Solution {
 public:
-    //using stack     
-    ListNode* reverseList(ListNode* head) {
-        stack<int>st;
-        ListNode* temp = head;
-        while(temp!=NULL){
-            st.push(temp->val);
-            temp=temp->next;
-        }
-        temp = head;
-        while(temp!=NULL){
-            int value = st.top();
-            st.pop();
-            temp->val = value;
-            temp=temp->next;
-        }
+    //using stack   Time: O(N) space: O(N)  
+//     ListNode* reverseList(ListNode* head) {
+//         stack<int>st;
+//         ListNode* temp = head;
+//         while(temp!=NULL){
+//             st.push(temp->val);
+//             temp=temp->next;
+//         }
+//         temp = head;
+//         while(temp!=NULL){
+//             int value = st.top();
+//             st.pop();
+//             temp->val = value;
+//             temp=temp->next;
+//         }
         
-        return head;
-    }
+//         return head;
+//     }
+
+    //just using 2 main pointers -> dummy node and next node
+    //Time: O(N), Space:O(1)
+     ListNode* reverseList(ListNode* head) {
+        ListNode* current = head;
+        ListNode* previous = NULL;
+        
+        while(current!=NULL){
+            ListNode*front = current->next;
+            current->next=previous;
+            previous=current;
+            current=front;
+        }
+         
+        return previous;
+     }
 };
